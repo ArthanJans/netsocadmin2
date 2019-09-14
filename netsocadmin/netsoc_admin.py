@@ -38,6 +38,16 @@ def index():
     )
 
 
+@app.before_request
+def before_request():
+    logger.info("sample text" + flask.request.remote_addr)
+
+
+@app.route('/robots.txt')
+def robots():
+    return flask.send_file('static/robots.txt')
+
+
 @app.errorhandler(404)
 def not_found(e):
     return flask.render_template("404.html"), 404

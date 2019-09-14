@@ -73,7 +73,7 @@ def is_correct_password(user: LoginUser) -> bool:
     combo are correct
     """
     logger.debug(f"checking password for '{user.username}''")
-    with ldap3.Connection(ldap_server, auto_bind=True, **config.LDAP_AUTH) as conn:
+    with ldap3.Connection(ldap_server, auto_bind=True, receive_timeout=5, **config.LDAP_AUTH) as conn:
         user.populate_data(conn)
         if not user.is_pass_correct():
             logger.debug(f"password incorrect for '{user.username}'")
