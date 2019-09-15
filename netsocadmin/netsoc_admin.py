@@ -40,7 +40,7 @@ def index():
 
 @app.before_request
 def before_request():
-    logger.info("sample text" + flask.request.remote_addr)
+    logger.info("sample text" + " " + flask.request.remote_addr + " " + flask.request.path)
 
 
 @app.route('/robots.txt')
@@ -55,7 +55,6 @@ def not_found(e):
 
 @app.errorhandler(500)
 def internal_error(e):
-    logger.error(e)
     return flask.render_template("500.html"), 500
 
 
