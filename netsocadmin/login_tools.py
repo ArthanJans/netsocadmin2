@@ -4,15 +4,15 @@ Contains functions which are used during the login and logout process.
 import crypt
 import functools
 import hmac
-import logging
 import typing
 
 import flask
 import ldap3
+import structlog
 
 import config
 
-logger = logging.getLogger("netsocadmin.login")
+logger = structlog.getLogger("netsocadmin.login")
 ldap_server = ldap3.Server(config.LDAP_HOST, get_info=ldap3.ALL)
 
 

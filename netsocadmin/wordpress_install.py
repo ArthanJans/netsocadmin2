@@ -1,4 +1,4 @@
-import logging
+import structlog
 import os
 import random
 import string
@@ -13,7 +13,7 @@ from jinja2 import Environment, PackageLoader
 
 import config
 
-logger = logging.getLogger(__name__)
+logger = structlog.getLogger(__name__)
 
 """
 This section contains all the functions that relate to file operations relating to a wordpress install.

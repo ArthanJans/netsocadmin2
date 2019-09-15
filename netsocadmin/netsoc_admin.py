@@ -3,11 +3,14 @@ This file contains the main webapp for netsoc admin.
 Sets up a local server running the website. Requests should
 then be proxied to this address.
 """
-import logging
+import traceback
+from uuid import uuid4
 
 import flask
+import structlog
 
 import config
+import logger as nsa_logger
 import login_tools
 import routes
 
@@ -17,7 +20,9 @@ app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 app.config["SESSION_COOKIE_HTTPONLY"] = True
 app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 10  # seconds
 
-logger = logging.getLogger("netsocadmin")
+nsa_logger.configure()
+
+logger = structlog.getLogger("netsocadmin")
 
 
 @app.route('/')
@@ -40,7 +45,15 @@ def index():
 
 @app.before_request
 def before_request():
-    logger.info("sample text" + " " + flask.request.remote_addr + " " + flask.request.path)
+    uid = uuid4()
+    flask.g.request_id = uid
+    logger.info("before request", request_id=uid, request_path=flask.request.path)
+
+
+@app.after_request
+def after_request(response: flask.Response):
+    logger.info("after request", request_id=flask.g.request_id, request_path=flask.request.path)
+    return response
 
 
 @app.route('/robots.txt')
@@ -53,8 +66,12 @@ def not_found(e):
     return flask.render_template("404.html"), 404
 
 
-@app.errorhandler(500)
-def internal_error(e):
+@app.errorhandler(Exception)
+def internal_error(e: Exception):
+    logger.critical('Exception on %s [%s]' % (flask.request.path, flask.request.method),
+                    request_id=flask.g.request_id,
+                    request_path=flask.request.path,
+                    stacktrace=traceback.format_exc())
     return flask.render_template("500.html"), 500
 
 
