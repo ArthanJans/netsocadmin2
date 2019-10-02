@@ -81,6 +81,7 @@ app.add_url_rule('/tools/wordpress', view_func=routes.WordpressView.as_view('wor
 app.add_url_rule('/tools/mysql', view_func=routes.MySQLView.as_view('mysql'))
 app.add_url_rule('/tools/shells', view_func=routes.ShellsView.as_view('shells'))
 app.add_url_rule('/tools/backups', view_func=routes.BackupsView.as_view('backups'))
+app.add_url_rule('/fail2ban', view_func=routes.Fail2BanView.as_view('fail2ban'))
 
 
 if __name__ == '__main__':

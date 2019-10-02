@@ -68,7 +68,7 @@
             background-color: #eee;
             display: flex;
             min-height: 100vh;
-            flex-direction: column;            
+            flex-direction: column;
         }
 
         .error-msg {
@@ -76,9 +76,16 @@
         }
 
         footer {
-            {% if is_logged_in %}
+                {
+                % if is_logged_in %
+            }
+
             margin-left: 240px;
-            {% endif %}
+
+                {
+                % endif %
+            }
+
             background-color: rgba(0, 0, 0, 0.0) !important;
         }
 
@@ -112,18 +119,29 @@
         }
 
         main {
-            {% if is_logged_in %}
+                {
+                % if is_logged_in %
+            }
+
             margin-right: 40px;
             margin-left: 280px;
-            {% else %}
+
+                {
+                % else %
+            }
+
             margin: 0 auto;
-            {% endif %}
+
+                {
+                % endif %
+            }
+
             max-width: 90%;
             flex: 1 0 auto;
         }
 
         .nav-wrapper {
-            padding-right: 5%; 
+            padding-right: 5%;
             padding-left: 260px
         }
 
@@ -134,15 +152,17 @@
             font-weight: 600 !important;
             /* color: rgb(105, 105, 105) !important; */
         }
-	    
-	.fa, .far, .fas {
-            font-family: "Font Awesome 5 Free", "Roboto", sans-serif;	
-	}
-	    
-	.fab {
-	    font-family: "Font Awesome 5 Brands", "Roboto", sans-serif;
-	}
-	  
+
+        .fa,
+        .far,
+        .fas {
+            font-family: "Font Awesome 5 Free", "Roboto", sans-serif;
+        }
+
+        .fab {
+            font-family: "Font Awesome 5 Brands", "Roboto", sans-serif;
+        }
+
         @media only screen and (min-width: 992px) {
             .row .col:first-child {
                 padding: 0 0.75rem 0 0;
@@ -159,7 +179,7 @@
                 min-width: 95%;
             }
 
-            main > div {
+            main>div {
                 width: 100%;
             }
 
@@ -168,7 +188,7 @@
             }
 
             .nav-wrapper {
-                padding-right: 0px; 
+                padding-right: 0px;
                 padding-left: 1em;
             }
 
@@ -191,7 +211,11 @@
                 line-height: 40px;
             }
 
-            .fa, .fab, .fal, .far, .fas {
+            .fa,
+            .fab,
+            .fal,
+            .far,
+            .fas {
                 line-height: 3;
             }
         }
@@ -223,7 +247,8 @@
         <div class="navbar">
             <nav>
                 <div class="nav-wrapper teal lighten-2">
-                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i
+                            class="material-icons">menu</i></a>
                     <span class="brand-logo"> {{ page_title }}</span>
 
                     {# This is the main navbar for when the screen is big enough #}
@@ -239,7 +264,8 @@
                         </li>
                         {% if is_logged_in %}
                         <li>
-                            <a class="dropdown-trigger btn waves-effect waves-light red accent-2 white-text" href="#" data-activates="profile-menu">{{ username }}</a>
+                            <a class="dropdown-trigger btn waves-effect waves-light red accent-2 white-text" href="#"
+                                data-activates="profile-menu">{{ username }}</a>
                             <ul id="profile-menu" class="dropdown-content">
                                 <li><a href="/logout">Logout</a></li>
                                 <li class="divider" tabindex="-1"></li>
@@ -250,7 +276,8 @@
                         </li>
                         {% else %}
                         <li>
-                            <a class="log-in-out-button btn waves-effect waves-light red accent-2 white-text" href="/">Login/Signup</a>
+                            <a class="log-in-out-button btn waves-effect waves-light red accent-2 white-text"
+                                href="/">Login/Signup</a>
                         </li>
                         {% endif %}
                     </ul>
@@ -259,7 +286,8 @@
                     <ul class="side-nav" id="mobile-demo">
                         {% if is_logged_in == True %}
                         <li style="margin-top: 1em">
-                            <a class="dropdown-trigger-mobile btn waves-effect waves-light red accent-2 white-text" href="#" data-activates="profile-menu-mobile">{{ username }}</a>
+                            <a class="dropdown-trigger-mobile btn waves-effect waves-light red accent-2 white-text"
+                                href="#" data-activates="profile-menu-mobile">{{ username }}</a>
                             <ul id="profile-menu-mobile" class="dropdown-content">
                                 <li><a href="/logout">Logout</a></li>
                                 <li class="divider" tabindex="-1"></li>
@@ -269,21 +297,24 @@
                             </ul>
                         </li>
                         {% endif %}
-                        <li {% if active == "home" %} class="active" {% endif %} title="The homepage of Netsoc Admin" style="margin-top: 2em">
+                        <li {% if active == "home" %} class="active" {% endif %} title="The homepage of Netsoc Admin"
+                            style="margin-top: 2em">
                             <a style="width: 100%" href="/tools">
                                 <i class="fas fa-home">
                                     <span>Home</span>
                                 </i>
                             </a>
                         </li>
-                        <li {% if active == "mysql" %} class="active" {% endif %} title="Create and delete MySQL Databases and change your password">
+                        <li {% if active == "mysql" %} class="active" {% endif %}
+                            title="Create and delete MySQL Databases and change your password">
                             <a style="width: 100%" href="/tools/mysql">
                                 <i class="fas fa-database">
                                     <span>MySQL</span>
                                 </i>
                             </a>
                         </li>
-                        <li {% if active == "backups" %} class="active" {% endif %} title="List and download backups of your home directory">
+                        <li {% if active == "backups" %} class="active" {% endif %}
+                            title="List and download backups of your home directory">
                             <a style="width: 100%" href="/tools/backups">
                                 <i class="fas fa-hdd">
                                     <span>Backups</span>
@@ -304,20 +335,31 @@
                                 </i>
                             </a>
                         </li>
-                        <li {% if active == "sudo" %} class="active" {% endif %} title="Apply for Sudo on one of our servers!">
+                        <li {% if active == "sudo" %} class="active" {% endif %}
+                            title="Apply for Sudo on one of our servers!">
                             <a style="width: 100%" href="/sudo">
                                 <i class="fas fa-users-cog">
                                     <span>Get Sudo</span>
                                 </i>
                             </a>
                         </li>
-                        <li {% if active == "help" %} class="active" {% endif %} title="Come here if you need help with any of our services">
+                        <li {% if active == "help" %} class="active" {% endif %}
+                            title="Come here if you need help with any of our services">
                             <a style="width: 100%" href="/help">
                                 <i class="fas fa-life-ring">
                                     <span>Help</span>
                                 </i>
                             </a>
-                        </li>                        
+                        </li>
+                        {% if is_admin == True %}
+                        <li {% if active == "fail2ban" %} class="active" {% endif %} title="Fail2Ban">
+                            <a style="width: 100%" href="/fail2ban">
+                                <i class="fas fa-hammer">
+                                    <span>Fail2Ban</span>
+                                </i>
+                            </a>
+                        </li>
+                        {% endif %}
                         <li class="divider" style="margin-top: 0.5em; margin-bottom: 0.5em"></li>
                         <li title="The Netsoc Website">
                             <a target="_blank" href="https://netsoc.co/rk">Netsoc Website</a>
@@ -332,68 +374,81 @@
                 </div>
             </nav>
         </div>
-        
-    {% if is_logged_in %}
-    <ul id="slide-out" class="side-nav fixed z-depth-1">
-        <li title="netsoc.co/rk">
-            <div class="brand-logo">
-                <a target="_blank" href='https://netsoc.co/rk'>
-                    <img src="https://netsoc.co/rk/style/images/horizontal.png" style="margin-top: 1em; width: 110%; margin-left: -1.4em;" />
+
+        {% if is_logged_in %}
+        <ul id="slide-out" class="side-nav fixed z-depth-1">
+            <li title="netsoc.co/rk">
+                <div class="brand-logo">
+                    <a target="_blank" href='https://netsoc.co/rk'>
+                        <img src="https://netsoc.co/rk/style/images/horizontal.png"
+                            style="margin-top: 1em; width: 110%; margin-left: -1.4em;" />
+                    </a>
+                </div>
+            </li>
+            <li class="divider" style="margin-bottom: 1em;"></li>
+            <li {% if active == "home" %} class="active" {% endif %} title="The homepage of Netsoc Admin">
+                <a style="width: 100%" href="/tools">
+                    <i class="fas fa-home">
+                        <span style="margin-left: 1em">Home</span>
+                    </i>
                 </a>
-            </div>
-        </li>
-        <li class="divider" style="margin-bottom: 1em;"></li>
-        <li {% if active == "home" %} class="active" {% endif %} title="The homepage of Netsoc Admin">
-            <a style="width: 100%" href="/tools">
-                <i class="fas fa-home">
-                    <span style="margin-left: 1em">Home</span>
-                </i>
-            </a>
-        </li>
-        <li {% if active == "mysql" %} class="active" {% endif %} title="Create and delete MySQL Databases and reset your password">
-            <a style="width: 100%" href="/tools/mysql">
-                <i class="fas fa-database">
-                    <span style="margin-left: 1em">MySQL</span>
-                </i>
-            </a>
-        </li>
-        <li {% if active == "backups" %} class="active" {% endif %} title="List and download backups of your home directory">
-            <a style="width: 100%" href="/tools/backups">
-                <i class="fas fa-hdd">
-                    <span style="margin-left: 1em">Backups</span>
-                </i>
-            </a>
-        </li>
-        <li {% if active == "wordpress" %} class="active" {% endif %} title="Install Wordpress">
-            <a style="width: 100%" href="/tools/wordpress">
-                <i class="fab fa-wordpress">
-                    <span style="margin-left: 1em">WordPress</span>
-                </i>
-            </a>
-        </li>
-        <li {% if active == "shells" %} class="active" {% endif %} title="Change your login shell">
-            <a style="width: 100%" href="/tools/shells">
-                <i class="fas fa-desktop">
-                    <span style="margin-left: 1em">Login Shell</span>
-                </i>
-            </a>
-        </li>
-        <li {% if active == "sudo" %} class="active" {% endif %} title="Apply for Sudo on one of our servers!">
-            <a style="width: 100%" href="/sudo">
-                <i class="fas fa-users-cog">
-                    <span style="margin-left: 1em">Get Sudo</span>
-                </i>
-            </a>
-        </li>
-        <li {% if active == "help" %} class="active" {% endif %} title="Come here if you need help with any of our services">
-            <a style="width: 100%" href="/help">
-                <i class="fas fa-life-ring">
-                    <span style="margin-left: 1em">Help</span>
-                </i>
-            </a>
-        </li>
-    </ul>
-    {% endif %}
+            </li>
+            <li {% if active == "mysql" %} class="active" {% endif %}
+                title="Create and delete MySQL Databases and reset your password">
+                <a style="width: 100%" href="/tools/mysql">
+                    <i class="fas fa-database">
+                        <span style="margin-left: 1em">MySQL</span>
+                    </i>
+                </a>
+            </li>
+            <li {% if active == "backups" %} class="active" {% endif %}
+                title="List and download backups of your home directory">
+                <a style="width: 100%" href="/tools/backups">
+                    <i class="fas fa-hdd">
+                        <span style="margin-left: 1em">Backups</span>
+                    </i>
+                </a>
+            </li>
+            <li {% if active == "wordpress" %} class="active" {% endif %} title="Install Wordpress">
+                <a style="width: 100%" href="/tools/wordpress">
+                    <i class="fab fa-wordpress">
+                        <span style="margin-left: 1em">WordPress</span>
+                    </i>
+                </a>
+            </li>
+            <li {% if active == "shells" %} class="active" {% endif %} title="Change your login shell">
+                <a style="width: 100%" href="/tools/shells">
+                    <i class="fas fa-desktop">
+                        <span style="margin-left: 1em">Login Shell</span>
+                    </i>
+                </a>
+            </li>
+            <li {% if active == "sudo" %} class="active" {% endif %} title="Apply for Sudo on one of our servers!">
+                <a style="width: 100%" href="/sudo">
+                    <i class="fas fa-users-cog">
+                        <span style="margin-left: 1em">Get Sudo</span>
+                    </i>
+                </a>
+            </li>
+            <li {% if active == "help" %} class="active" {% endif %}
+                title="Come here if you need help with any of our services">
+                <a style="width: 100%" href="/help">
+                    <i class="fas fa-life-ring">
+                        <span style="margin-left: 1em">Help</span>
+                    </i>
+                </a>
+            </li>
+            {% if is_admin == True %}
+            <li {% if active == "fail2ban" %} class="active" {% endif %} title="Fail2Ban">
+                <a style="width: 100%" href="/fail2ban">
+                    <i class="fas fa-hammer">
+                        <span style="margin-left: 1em">Fail2Ban</span>
+                    </i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+        {% endif %}
     </header>
     <main>
         <div>

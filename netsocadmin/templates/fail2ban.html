@@ -1,0 +1,24 @@
+{% extends "page-skeleton.html" %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block body %}
+{{ super() }}
+<div class='card'>
+    <div class='card-content'>
+        {% if help_error %}
+        <p class='red-text'>{{ help_error }}</p>
+        {% endif %}
+        <form action='/fail2ban' method='get'>
+            <label for='server'>Server:</label>
+            <select id='server' name='server' onchange="this.form.submit()">
+                <option {% if server=="leela" %}selected{% endif %} value='leela'>Leela</option>
+                <option {% if server=="bigbertha" %}selected{% endif %} value='bigbertha'>BigBertha</option>
+                <option {% if server=="boole" %}selected{% endif %} value='boole'>Boole</option>
+                <option {% if server=="lovelace" %}selected{% endif %} value='lovelace'>Lovelace</option>
+            </select>
+        </form>
+    </div>
+</div>
+{% endblock %}

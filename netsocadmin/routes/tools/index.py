@@ -34,6 +34,28 @@ class ProtectedToolView(TemplateView):
     methods = ["GET"]
 
 
+class AdminView(View):
+    """
+    Super class for all of the admin routes that dont render a template
+    """
+    # Decorate all subclasses with the following decorators
+    decorators = [login_tools.admin_page]
+    # Specify the default method(s) that are allowed to be used to access the route
+    # This can be overriden on a per view basis
+    methods = ["GET"]
+
+
+class AdminToolView(TemplateView):
+    """
+    Super class for all of the admin routes that render the tools template
+    """
+    # Decorate all subclasses with the following decorators
+    decorators = [login_tools.admin_page]
+    # Specify the default method(s) that are allowed to be used to access the route
+    # This can be overriden on a per view basis
+    methods = ["GET"]
+
+
 class ToolIndex(ProtectedToolView):
     """
     Route: tools

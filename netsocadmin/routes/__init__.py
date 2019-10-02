@@ -8,6 +8,7 @@ from .tools.mysql import CreateDB, DeleteDB, MySQLView, ChangePassword
 from .tools.shells import ChangeShell, ShellsView
 from .tools.sudo import CompleteSudo, Sudo
 from .tools.wordpress import WordpressInstall, WordpressView
+from .tools.fail2ban import Fail2BanView
 from .tutorials import Tutorials
 from .view import TemplateView
 
@@ -41,6 +42,7 @@ __all__ = [
     "HelpView",
     "WordpressInstall",
     "WordpressView",
+    "Fail2BanView",
     # Tutorials
     "Tutorials",
 ]

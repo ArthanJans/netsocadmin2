@@ -5,6 +5,8 @@ import ldap3
 
 import config
 
+import login_tools
+
 from .index import ProtectedToolView, ProtectedView
 
 

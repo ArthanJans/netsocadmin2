@@ -59,11 +59,37 @@ def protected_page(view_func: typing.Callable[..., None]) -> typing.Callable[...
     return protected_view_func
 
 
+def admin_page(view_func: typing.Callable[..., None]) -> typing.Callable[..., None]:
+    """
+    admin_page is a route function decorator which will check that a user
+    is logged in and is an admin before allowing the decorated view function to be shown. If the
+    user is not logged in, it will redirect them to the index page. If the user
+    is logged in but not an admin, it will rediret them to the tools page.
+    """
+    @functools.wraps(view_func)
+    def protected_view_func(*args, **kwargs):
+        print("Hi")
+        if config.LOGGED_IN_KEY not in flask.session or not flask.session[config.LOGGED_IN_KEY]:
+            return flask.redirect("/?asdf=lol")
+        if "admin" not in flask.session or not flask.session["admin"]:
+            return flask.redirect("/tools")
+        print(flask.session["admin"])
+        return view_func(*args, **kwargs)
+    return protected_view_func
+
+
 def is_logged_in():
     """
     Returns True if the user is currently logged in.
     """
     return config.LOGGED_IN_KEY in flask.session and flask.session[config.LOGGED_IN_KEY]
+
+
+def is_admin():
+    """
+    Returns True if the user is currently logged in and is an admin.
+    """
+    return is_logged_in() and "admin" in flask.session and flask.session["admin"]
 
 
 def is_correct_password(user: LoginUser) -> bool:
