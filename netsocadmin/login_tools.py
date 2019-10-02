@@ -68,12 +68,10 @@ def admin_page(view_func: typing.Callable[..., None]) -> typing.Callable[..., No
     """
     @functools.wraps(view_func)
     def protected_view_func(*args, **kwargs):
-        print("Hi")
         if config.LOGGED_IN_KEY not in flask.session or not flask.session[config.LOGGED_IN_KEY]:
             return flask.redirect("/?asdf=lol")
         if "admin" not in flask.session or not flask.session["admin"]:
             return flask.redirect("/tools")
-        print(flask.session["admin"])
         return view_func(*args, **kwargs)
     return protected_view_func
 
