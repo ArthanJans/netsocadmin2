@@ -76,15 +76,11 @@
         }
 
         footer {
-                {
-                % if is_logged_in %
-            }
+                {% if is_logged_in %}
 
             margin-left: 240px;
 
-                {
-                % endif %
-            }
+                {% endif %}
 
             background-color: rgba(0, 0, 0, 0.0) !important;
         }
@@ -119,22 +115,16 @@
         }
 
         main {
-                {
-                % if is_logged_in %
-            }
+                {% if is_logged_in %}
 
             margin-right: 40px;
             margin-left: 280px;
 
-                {
-                % else %
-            }
+                {% else %}
 
             margin: 0 auto;
 
-                {
-                % endif %
-            }
+                {% endif %}
 
             max-width: 90%;
             flex: 1 0 auto;
